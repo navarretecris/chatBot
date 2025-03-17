@@ -1,0 +1,88 @@
+/* 🔹 Fondo del body con imagen completa */
+body {
+    background: url('../icons/image4.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* 🔹 Contenedor del login */
+.container-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    z-index: 2;
+}
+
+/* 🔹 Tarjeta de Login semi-transparente con efecto de desenfoque */
+.card-login {
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.3); /* 🔥 Más transparencia */
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px); /* 🔥 Aplica un desenfoque al fondo */
+    position: relative;
+    z-index: 2;
+}
+
+/* 🔹 Evitar que los inputs hereden la transparencia */
+.card-login input,
+.card-login button {
+    background: rgba(255, 255, 255, 0.8); /* Hace los campos más opacos */
+    border-radius: 8px;
+}
+
+/* 🔹 Bordes y efectos en el formulario */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.85); /* Asegura que los inputs sean visibles */
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+/* 🔹 Botones con efecto */
+.btn {
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* 🔹 Ajuste en pantallas pequeñas */
+@media (max-width: 768px) {
+    .card-login {
+        max-width: 90%;
+        background: rgba(255, 255, 255, 0.4); /* 🔥 Un poco más opaco en móviles */
+    }
+}
+
+/* 🔹 Animación de levitación para el logo */
+@keyframes floatAnimation {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+/* 🔹 Efecto de resplandor */
+@keyframes glow {
+    0% { filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.3)); }
+    50% { filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.8)); }
+    100% { filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.3)); }
+}
+
+/* 🔹 Aplicar animación al logo */
+.chatbot-logo {
+    animation: floatAnimation 3s infinite ease-in-out, glow 3s infinite alternate;
+}
