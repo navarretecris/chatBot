@@ -1,0 +1,163 @@
+/* ========== GENERAL LAYOUT ========== */
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #e3f2fd, #ffffff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.chat-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 15px;
+}
+
+/* ========== HEADER ========== */
+.chat-header {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    border-radius: 12px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: white;
+    margin-bottom: 15px;
+}
+
+.chat-header h5 {
+    color: white;
+    margin-bottom: 0;
+}
+
+.chat-header span {
+    color: #d1ffcf;
+    font-size: 0.9rem;
+}
+
+.chat-header .btn-danger {
+    background-color: #ff4d4d;
+    border-color: #ff4d4d;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+}
+
+.chat-header .btn-danger:hover {
+    background-color: #e60000;
+    border-color: #e60000;
+}
+
+/* ========== LOGO CON ESPACIO Y ANIMACIÓN ========== */
+.logo-container {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: white;
+    padding: 6px;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-top: 2px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.chatbot-logo {
+    width: 100%;
+    border-radius: 50%;
+    animation: floatBot 3s ease-in-out infinite;
+    display: inline-block;
+    will-change: transform;
+}
+
+@keyframes floatBot {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+/* ========== CHAT AREA ========== */
+#chatContainer {
+    flex: 1;
+    background-color: #faecd6;
+    border-radius: 12px;
+    padding: 15px;
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ========== MENSAJES ========== */
+.message-left,
+.message-right {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.message-left {
+    justify-content: flex-start;
+}
+
+.message-right {
+    justify-content: flex-end;
+}
+
+.message-bubble {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.message-left .message-bubble {
+    background-color: #ffffff;
+    color: #000;
+}
+
+.message-right .message-bubble {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* ========== INPUT FIXED AL FONDO ========== */
+.input-group {
+    margin-top: auto;
+    padding-bottom: 10px;
+}
+
+#textbox {
+    border-radius: 12px 0 0 12px;
+}
+
+#sendBtn {
+    border-radius: 0 12px 12px 0;
+}
+
+/* ========== ESTILO DE LA IMAGEN DEL POKÉMON CON ANIMACIÓN ========== */
+.pokemon-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    animation: zoomIn 0.6s ease-in-out;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}

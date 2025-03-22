@@ -9,18 +9,23 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Archivo de estilos personalizados -->
+    <link rel="stylesheet" href="css/chatbotstyles.css">
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container chat-wrapper">
         <h1 class="text-center">Awesome Chatbot App</h1>
 
 
 
         <div class="d-flex align-items-center justify-content-between px-3" style="background-color: aqua; border-radius: 10px;">
             <div class="d-flex align-items-center">
-                <img src="./icons/chatBot.png" class="rounded-circle img-thumbnail" width="75px" alt="Chatbot Icon">
+            <div class="logo-container">
+    <img src="./icons/chatBot.png" class="chatbot-logo" alt="Chatbot Icon">
+</div>
                 <div class="ms-3">
                     <h5 class="m-2">Chatbot</h5>
                     <span class="m-2 text-success">Online</span>
