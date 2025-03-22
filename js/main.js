@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("✅ main.js cargado correctamente");
+    console.log("✅ main.js loaded successfully");
 
     // Manejo del formulario de login
     let loginForm = document.getElementById("loginForm");
     if (loginForm) {
-        console.log("✅ loginForm encontrado en el DOM");
+        console.log("✅ loginForm found in the DOM");
         loginForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
@@ -26,18 +26,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .catch(error => {
-                console.error("❌ Error en la autenticación:", error);
+                console.error("❌ Authentication error:", error);
                 document.getElementById("loginError").textContent = "Server error. Please try again.";
             });
         });
     } else {
-        console.warn("⚠️ loginForm NO encontrado en el DOM.");
+        console.warn("⚠️ loginForm NOT found in the DOM.");
     }
 
     // Manejo del formulario de registro
     let registerForm = document.getElementById("registerForm");
     if (registerForm) {
-        console.log("✅ registerForm encontrado en el DOM");
+        console.log("✅ registerForm found in the DOM");
         registerForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
             if (!regex.test(newPassword)) {
-                alert("La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un símbolo especial.");
+                alert("Password must be at least 8 characters long and include an uppercase letter, a number, and a special character.");
                 return;
             }
 
@@ -59,21 +59,20 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 console.log("🔄 Response from register.php:", data);
                 if (data.success) {
-                    alert("✅ Usuario registrado exitosamente. Ahora puedes iniciar sesión.");
+                    alert("✅ User successfully registered. You can now log in.");
                     let registerModal = bootstrap.Modal.getInstance(document.getElementById("registerModal"));
                     registerModal.hide();
                     registerForm.reset();
                 } else {
-                    alert(data.message || "Error en el registro.");
+                    alert(data.message || "Registration error.");
                 }
             })
             .catch(error => {
-                console.error("❌ Error en el registro:", error);
+                console.error("❌ Registration error:", error);
                 alert("Server error. Please try again.");
             });
         });
     } else {
-        console.warn("⚠️ registerForm NO encontrado en el DOM.");
+        console.warn("⚠️ registerForm NOT found in the DOM.");
     }
 });
-

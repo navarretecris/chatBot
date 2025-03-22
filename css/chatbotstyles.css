@@ -161,3 +161,23 @@ html, body {
         transform: scale(1);
     }
 }
+
+.bot-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: white; /* ✅ Fondo blanco */
+    padding: 3px;             /* Espacio interior para separar imagen del borde */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: white;
+    padding: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}

@@ -1,29 +1,55 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("✅ chatbot.js cargado correctamente");
+    console.log("✅ chatbot.js loaded successfully");
 
     const sendBtn = document.getElementById('sendBtn');
     const textbox = document.getElementById('textbox');
     const chatContainer = document.getElementById('chatContainer');
 
     if (!sendBtn || !textbox || !chatContainer) {
-        console.error("❌ No se encontraron los elementos del chat.");
+        console.error("❌ Chat elements not found.");
         return;
     }
 
+    // ✅ Avatar fijo generado al iniciar la sesión
+    const userAvatarUrl = generateUserAvatar();
+
+    // ✅ Saludo inicial del bot
+    displayBotMessage("Hello! How can I help you today?");
+
+    sendBtn.addEventListener('click', () => {
+        const messageText = textbox.value.trim();
+        if (messageText !== "") {
+            sendMessage(messageText);
+        }
+    });
+
+    textbox.addEventListener('keypress', (e) => {
+        if (e.key === "Enter") {
+            const messageText = textbox.value.trim();
+            if (messageText !== "") {
+                sendMessage(messageText);
+            }
+        }
+    });
+
     function sendMessage(messageText) {
-        const messageWrapper = document.createElement('div');
-        messageWrapper.classList.add('d-flex', 'justify-content-end', 'mb-3');
+        const userMessageWrapper = document.createElement('div');
+        userMessageWrapper.classList.add('d-flex', 'justify-content-end', 'align-items-start', 'mb-3');
 
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('bg-primary', 'text-white', 'rounded', 'p-2', 'shadow-sm', 'text-end');
-        messageElement.style.maxWidth = '60%';
-        messageElement.style.display = 'inline-block';
+        const userMessageElement = document.createElement('div');
+        userMessageElement.classList.add('bg-primary', 'text-white', 'rounded', 'p-2', 'shadow-sm', 'me-2');
+        userMessageElement.style.maxWidth = '60%';
+        userMessageElement.style.display = 'inline-block';
+        userMessageElement.innerHTML = `<div>${messageText}</div>`;
 
-        messageElement.innerHTML = `<span><strong>You:</strong></span>
-                                    <p class="mb-0" style="margin-left: 5px;">${messageText}</p>`;
+        const userAvatar = document.createElement('img');
+        userAvatar.src = userAvatarUrl;
+        userAvatar.alt = 'You';
+        userAvatar.classList.add('user-avatar');
 
-        messageWrapper.appendChild(messageElement);
-        chatContainer.appendChild(messageWrapper);
+        userMessageWrapper.appendChild(userMessageElement);
+        userMessageWrapper.appendChild(userAvatar);
+        chatContainer.appendChild(userMessageWrapper);
         chatContainer.scrollTop = chatContainer.scrollHeight;
         textbox.value = "";
 
@@ -45,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         })
         .catch(error => {
-            console.error("❌ Error obteniendo la respuesta del chatbot:", error);
+            console.error("❌ Error getting chatbot response:", error);
         });
     }
 
@@ -72,17 +98,17 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="card-body text-center">
                             <img src="${image}" alt="${pokemonName}" class="pokemon-img mb-3">
                             <h5 class="card-title text-primary">${data.name.toUpperCase()} 🏆</h5>
-                            <p><strong>Tipo:</strong> ${types}</p>
-                            <p><strong>Habilidades:</strong> ${abilities}</p>
+                            <p><strong>Type:</strong> ${types}</p>
+                            <p><strong>Abilities:</strong> ${abilities}</p>
                             <table class="table table-sm table-bordered mb-2">
                                 <thead class="table-light">
-                                    <tr><th>Estadística</th><th>Valor</th></tr>
+                                    <tr><th>Stat</th><th>Value</th></tr>
                                 </thead>
                                 <tbody>${stats}</tbody>
                             </table>
-                            <p><strong>Peso:</strong> ${weight} kg</p>
-                            <p><strong>Altura:</strong> ${height} m</p>
-                            <p><strong>Experiencia Base:</strong> ${baseExperience}</p>
+                            <p><strong>Weight:</strong> ${weight} kg</p>
+                            <p><strong>Height:</strong> ${height} m</p>
+                            <p><strong>Base Experience:</strong> ${baseExperience}</p>
                         </div>
                     </div>
                 `;
@@ -90,41 +116,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 displayBotMessage(botResponse);
             })
             .catch(error => {
-                console.error("❌ Error al obtener datos del Pokémon:", error);
-                displayBotMessage("No pude encontrar ese Pokémon. ¡Intenta con otro!");
+                console.error("❌ Error fetching Pokémon data:", error);
+                displayBotMessage("I couldn't find that Pokémon. Try another one!");
             });
     }
 
     function displayBotMessage(botResponse) {
         const botMessageWrapper = document.createElement('div');
-        botMessageWrapper.classList.add('d-flex', 'justify-content-start', 'mb-3');
+        botMessageWrapper.classList.add('d-flex', 'align-items-start', 'mb-3');
+
+        const botAvatar = document.createElement('img');
+        botAvatar.src = './icons/chatBot.png';
+        botAvatar.alt = 'Bot';
+        botAvatar.classList.add('bot-avatar');
 
         const botMessageElement = document.createElement('div');
-        botMessageElement.classList.add('bg-light', 'text-dark', 'rounded', 'p-2', 'shadow-sm', 'text-start');
+        botMessageElement.classList.add('bg-light', 'text-dark', 'rounded', 'p-2', 'shadow-sm', 'ms-2');
         botMessageElement.style.maxWidth = '60%';
         botMessageElement.style.display = 'inline-block';
 
-        botMessageElement.innerHTML = `<span><strong>Chatbot:</strong></span>
-                                       <div style="margin-left: 5px;">${botResponse}</div>`;
+        botMessageElement.innerHTML = `<div>${botResponse}</div>`;
 
+        botMessageWrapper.appendChild(botAvatar);
         botMessageWrapper.appendChild(botMessageElement);
         chatContainer.appendChild(botMessageWrapper);
         chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    sendBtn.addEventListener('click', () => {
-        const messageText = textbox.value.trim();
-        if (messageText !== "") {
-            sendMessage(messageText);
-        }
-    });
-
-    textbox.addEventListener('keypress', (e) => {
-        if (e.key === "Enter") {
-            const messageText = textbox.value.trim();
-            if (messageText !== "") {
-                sendMessage(messageText);
-            }
-        }
-    });
+    function generateUserAvatar() {
+        const randomId = Math.floor(Math.random() * 1000);
+        return `https://api.dicebear.com/7.x/bottts/svg?seed=${randomId}`;
+    }
 });
