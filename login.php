@@ -9,21 +9,22 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Archivo de estilos personalizados -->
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/loginstyles.css">
 </head>
 
-<body class="bg-light">
-
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card shadow-lg p-4 rounded-4" style="max-width: 400px; width: 100%;">
+<body>
+    <!-- Fondo centrado -->
+    <div class="container-login">
+        <!-- Tarjeta de login -->
+        <div class="card-login">
             <div class="text-center mb-3">
-            <img src="icons/chatBot.png" alt="Chatbot Logo" class="img-fluid chatbot-logo" width="80px">
+                <img src="icons/chatBot.png" alt="Chatbot Logo" class="img-fluid chatbot-logo" width="80px">
                 <h3 class="mt-2 fw-bold">Welcome to Chatbot</h3>
                 <p class="text-muted">Please log in to continue</p>
             </div>
 
-            <!-- Login Form -->
+            <!-- Formulario de login -->
             <form id="loginForm">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
@@ -39,6 +40,7 @@
 
             <hr>
 
+            <!-- Botón de registro -->
             <div class="text-center">
                 <p class="mb-2">Don't have an account?</p>
                 <button type="button" class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#registerModal">
@@ -48,11 +50,11 @@
         </div>
     </div>
 
-    <!-- Modal for Register -->
+    <!-- Modal de registro -->
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
+    <div class="modal-dialog custom-align-modal modal-dialog-centered">
+    <div class="modal-content card-login card-modal">
+                <div class="modal-header border-0">
                     <h5 class="modal-title" id="registerModalLabel">Register New User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -74,9 +76,9 @@
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
-
 </body>
 
 </html>

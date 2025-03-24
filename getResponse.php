@@ -5,27 +5,37 @@ require 'db.php'; // Conexión a la base de datos
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+function normalize($text) {
+    $text = strtolower(trim($text));
+    $text = preg_replace("/[^\p{L}\p{N}\s]/u", "", $text); // quitar puntuación y símbolos
+    return $text;
+}
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!isset($_POST["message"])) {
         echo json_encode(["success" => false, "response" => "No message received"]);
         exit;
     }
 
-    $userMessage = trim($_POST["message"]);
-    $userMessage = strtolower($userMessage);
+    $userMessage = normalize($_POST["message"]);
 
-    // Obtener todas las respuestas y comparar los textos posibles
+    // Obtener todas las entradas de la base de datos
     $stmt = $pdo->query("SELECT text, response FROM responses");
     $allResponses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $matchedResponse = null;
 
     foreach ($allResponses as $row) {
-        $possibleTexts = explode("|", strtolower($row["text"])); // Separa las frases posibles
-        if (in_array($userMessage, $possibleTexts)) { // Si el mensaje coincide con alguna frase
-            $responses = explode("|", $row["response"]); // Divide las respuestas en array
-            $matchedResponse = $responses[array_rand($responses)]; // Elige una respuesta aleatoria
-            break; // Sale del bucle al encontrar una coincidencia
+        $possibleTexts = explode("|", strtolower($row["text"])); // frases posibles
+        foreach ($possibleTexts as $phrase) {
+            $normalizedPhrase = normalize($phrase);
+
+            // Comparación exacta o fuzzy con tolerancia Levenshtein
+            if ($userMessage === $normalizedPhrase || levenshtein($userMessage, $normalizedPhrase) <= 2) {
+                $responses = explode("|", $row["response"]);
+                $matchedResponse = $responses[array_rand($responses)];
+                break 2; // rompe ambos foreach
+            }
         }
     }
 

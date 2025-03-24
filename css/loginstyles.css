@@ -1,12 +1,12 @@
 /* 🔹 Fondo del body con imagen completa */
 body {
-    background: url('../icons/image4.jpg') no-repeat center center fixed;
+    background: url('../icons/image3.jpg') no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     font-family: 'Arial', sans-serif;
 }
 
-/* 🔹 Contenedor del login */
+/* 🔹 Contenedor principal centrado */
 .container-login {
     display: flex;
     justify-content: center;
@@ -17,32 +17,31 @@ body {
     z-index: 2;
 }
 
-/* 🔹 Tarjeta de Login semi-transparente con efecto de desenfoque */
+/* 🔹 Tarjeta de Login y Registro */
 .card-login {
     padding: 20px;
     max-width: 400px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.3); /* 🔥 Más transparencia */
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(12px); /* 🔥 Aplica un desenfoque al fondo */
+    backdrop-filter: blur(12px);
     position: relative;
     z-index: 2;
 }
 
-/* 🔹 Evitar que los inputs hereden la transparencia */
-.card-login input,
-.card-login button {
-    background: rgba(255, 255, 255, 0.8); /* Hace los campos más opacos */
+/* 🔹 Input personalizado */
+.card-login input {
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 8px;
 }
 
-/* 🔹 Bordes y efectos en el formulario */
+/* 🔹 Estilo a los inputs */
 .form-control {
     border-radius: 8px;
     border: 1px solid #ced4da;
     transition: all 0.3s ease-in-out;
-    background: rgba(255, 255, 255, 0.85); /* Asegura que los inputs sean visibles */
+    background: rgba(255, 255, 255, 0.85);
 }
 
 .form-control:focus {
@@ -50,7 +49,7 @@ body {
     box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
 }
 
-/* 🔹 Botones con efecto */
+/* 🔹 Botones */
 .btn {
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
@@ -60,11 +59,11 @@ body {
     transform: scale(1.05);
 }
 
-/* 🔹 Ajuste en pantallas pequeñas */
+/* 🔹 Responsive */
 @media (max-width: 768px) {
     .card-login {
         max-width: 90%;
-        background: rgba(255, 255, 255, 0.4); /* 🔥 Un poco más opaco en móviles */
+        background: rgba(255, 255, 255, 0.4);
     }
 }
 
@@ -82,7 +81,42 @@ body {
     100% { filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.3)); }
 }
 
-/* 🔹 Aplicar animación al logo */
+/* 🔹 Logo animado */
 .chatbot-logo {
     animation: floatAnimation 3s infinite ease-in-out, glow 3s infinite alternate;
+}
+
+.modal-dialog.custom-align-modal {
+    width: 460px !important;     /* Fuerza el nuevo ancho */
+    max-width: none !important;  /* Elimina la restricción de Bootstrap */
+    margin: 10px auto 0 auto; /* 👈 cambia este valor para subir o bajar */
+}
+
+/* Cuando es el modal: más ancho */
+.card-modal {
+    max-width: unset !important;
+    width: 100% !important;
+}
+
+/* 🔹 Ajuste responsivo en móviles */
+@media (max-width: 768px) {
+    .custom-align-modal {
+        width: 90% !important;
+    }
+}
+
+
+.modal-content {
+    animation: fadeInUp 0.3s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
